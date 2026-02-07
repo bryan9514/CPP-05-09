@@ -6,7 +6,7 @@
 #    By: brturcio <brturcio@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/05 11:19:44 by brturcio          #+#    #+#              #
-#    Updated: 2026/02/05 12:32:13 by brturcio         ###   ########.fr        #
+#    Updated: 2026/02/07 10:32:24 by brturcio         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ CFLAGS		:= -Wall -Wextra -Werror -std=c++98
 DIR_SRCS	:= sources/
 DIR_OBJS	:= objs/
 
-SOURCES		:= main.cpp Bureaucrat.cpp
+SOURCES		:= main.cpp Bureaucrat.cpp Form.cpp
 OBJECTS		:= $(addprefix $(DIR_OBJS), $(SOURCES:.cpp=.o))
 
 INCLUDES	:= -Iincludes
