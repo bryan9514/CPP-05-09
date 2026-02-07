@@ -6,7 +6,7 @@
 /*   By: brturcio <brturcio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 12:32:31 by brturcio          #+#    #+#             */
-/*   Updated: 2026/02/05 19:21:08 by brturcio         ###   ########.fr       */
+/*   Updated: 2026/02/07 11:38:24 by brturcio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include <exception>
 #include <string>
+class Form;
 
 /* ========== RESET ========== */
 # define RST "\033[0m"
@@ -41,8 +42,12 @@ public:
 
 	const std::string &getName(void) const;
 	int			getGrade(void) const;
+	
 	void		increaseGrade(void);
 	void		decreaseGrade(void);
+
+	void		signForm(void);
+
 
 class GradeTooHighException : public std::exception
 {
