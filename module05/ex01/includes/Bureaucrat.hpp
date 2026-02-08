@@ -6,7 +6,7 @@
 /*   By: brturcio <brturcio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 12:32:31 by brturcio          #+#    #+#             */
-/*   Updated: 2026/02/07 11:38:24 by brturcio         ###   ########.fr       */
+/*   Updated: 2026/02/07 18:50:42 by brturcio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,7 @@ public:
 	void		increaseGrade(void);
 	void		decreaseGrade(void);
 
-	void		signForm(void);
-
+	void		signForm(Form & form);
 
 class GradeTooHighException : public std::exception
 {

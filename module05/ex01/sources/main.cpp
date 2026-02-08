@@ -6,12 +6,13 @@
 /*   By: brturcio <brturcio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 12:18:07 by brturcio          #+#    #+#             */
-/*   Updated: 2026/02/05 19:45:23 by brturcio         ###   ########.fr       */
+/*   Updated: 2026/02/07 19:06:40 by brturcio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 int	main(void)
 {
@@ -19,12 +20,14 @@ int	main(void)
 	{
 		try
 		{
+			Form		form("Contrato 1", 11, 11);
 			Bureaucrat	goodBure("Good", 10);
 
 			std::cout << goodBure << std::endl;
 			goodBure.decreaseGrade();
 			goodBure.decreaseGrade();
 			std::cout << goodBure << std::endl;
+			goodBure.signForm(form);
 		}
 		catch (std::exception & e)
 		{

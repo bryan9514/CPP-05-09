@@ -6,7 +6,7 @@
 /*   By: brturcio <brturcio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/07 10:32:49 by brturcio          #+#    #+#             */
-/*   Updated: 2026/02/07 16:18:32 by brturcio         ###   ########.fr       */
+/*   Updated: 2026/02/07 18:21:45 by brturcio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,13 +80,9 @@ int		Form::getGradeExecute(void) const
 /* ============================ public methods ============================== */
 void	Form::beSigned(const Bureaucrat & bureaucrat)
 {
-	if (bureaucrat.getGrade() > _gradeSigned) {
-		std::cout << bureaucrat.getName() << " couldn’t sign "
-			<< getName() << " beacause ";
+	if (bureaucrat.getGrade() > _gradeSigned)
 		throw Form::GradeTooLowException();
-	}
 	_signed = true;
-	std::cout << bureaucrat.getGrade() << " signed " << getName();
 }
 
 const char	*Form::GradeTooHighException::what() const throw()
@@ -101,9 +97,9 @@ const char	*Form::GradeTooLowException::what() const throw()
 
 std::ostream	&operator<<(std::ostream & str, const Form & form)
 {
-	str << form.getName() << std::endl
-		<< form.getSigned() << std::endl
-		<< form.getGradeSigned() << std::endl
-		<< form.getGradeExecute() << std::endl;
+	str << "Form " << form.getName()
+		<< ", signed: " << (form.getSigned() ? "yes" : "no")
+		<< ", grade to sign: " << form.getGradeSigned()
+		<< ", grade to execute: " << form.getGradeExecute();
 	return (str);
 }
