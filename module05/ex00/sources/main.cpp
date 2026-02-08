@@ -6,7 +6,7 @@
 /*   By: brturcio <brturcio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 12:18:07 by brturcio          #+#    #+#             */
-/*   Updated: 2026/02/05 19:45:23 by brturcio         ###   ########.fr       */
+/*   Updated: 2026/02/08 10:18:26 by brturcio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,13 @@ int	main(void)
 		}
 	std::cout << RST;
 	}
-	std::cout << WRN << "\n======== Low Bureaucrat  ========\n" << std::endl;
+	std::cout << WRN << "\n======== High Bureaucrat  ========\n" << std::endl;
 	{
 		try
 		{
-			Bureaucrat	lowBure("Low", -100);
+			Bureaucrat	highBure("High", -100);
 
-			std::cout << "lowBure is: " << lowBure << std::endl;
+			std::cout << "highBure is: " << highBure << std::endl;
 		}
 		catch (std::exception & e)
 		{
@@ -46,13 +46,13 @@ int	main(void)
 		}
 	std::cout << RST;
 	}
-	std::cout << ERR << "\n======== High Bureaucrat  ========\n" << std::endl;
+	std::cout << ERR << "\n======== Low Bureaucrat  ========\n" << std::endl;
 	{
 		try
 		{
-			Bureaucrat	highBure("High", 256);
+			Bureaucrat	lowBure("Low", 256);
 
-			std::cout << "highBure is: " << highBure << std::endl;
+			std::cout << "lowBure is: " << lowBure << std::endl;
 		}
 		catch (std::exception & e)
 		{

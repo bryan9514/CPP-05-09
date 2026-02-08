@@ -5,4 +5,3 @@ CompileFlags:
     - -Werror
     - -std=c++98
     - -I../includes
-

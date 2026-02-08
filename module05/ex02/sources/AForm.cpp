@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Form.cpp                                           :+:      :+:    :+:   */
+/*   AForm.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brturcio <brturcio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/07 10:32:49 by brturcio          #+#    #+#             */
-/*   Updated: 2026/02/08 09:48:33 by brturcio         ###   ########.fr       */
+/*   Updated: 2026/02/08 13:10:35 by brturcio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "AForm.hpp"
 #include <iostream>
 
 /* =========================== default constructor ========================= */
-Form::Form(void) :
+AForm::AForm(void) :
 	_name("default"),
 	_signed(false),
 	_gradeSigned(150),
@@ -23,20 +23,20 @@ Form::Form(void) :
 {}
 
 /* =========================== name constructor ============================= */
-Form::Form(const std::string & name, int gradeSigned, int gradeExecute) :
+AForm::AForm(const std::string & name, int gradeSigned, int gradeExecute) :
 	_name(name),
 	_signed(false),
 	_gradeSigned(gradeSigned),
 	_gradeExecute(gradeExecute)
 {
 	if (_gradeSigned < 1 || _gradeExecute < 1)
-		throw Form::GradeTooHighException();
+		throw AForm::GradeTooHighException();
 	if (_gradeSigned > 150 || _gradeExecute > 150)
-		throw Form::GradeTooLowException();
+		throw AForm::GradeTooLowException();
 }
 
 /* =========================== copy constructor ============================= */
-Form::Form(const Form & copy) :
+AForm::AForm(const AForm & copy) :
 	_name(copy._name),
 	_signed(copy._signed),
 	_gradeSigned(copy._gradeSigned),
@@ -44,7 +44,7 @@ Form::Form(const Form & copy) :
 {}
 
 /* ======================== copy assignment operator ======================== */
-Form & Form::operator=(const Form & other)
+AForm & AForm::operator=(const AForm & other)
 {
 	if (this != &other) {
 		_signed = other._signed;
@@ -53,51 +53,51 @@ Form & Form::operator=(const Form & other)
 }
 
 /* ================================ destructor ============================== */
-Form::~Form(void)
+AForm::~AForm(void)
 {}
 
 /* ================================= gettins ================================ */
-const std::string	&Form::getName(void) const
+const std::string	&AForm::getName(void) const
 {
 	return (_name);
 }
 
-bool	Form::getSigned(void) const
+bool	AForm::getSigned(void) const
 {
 	return (_signed);
 }
 
-int		Form::getGradeSigned(void) const
+int		AForm::getGradeSigned(void) const
 {
 	return (_gradeSigned);
 }
 
-int		Form::getGradeExecute(void) const
+int		AForm::getGradeExecute(void) const
 {
 	return (_gradeExecute);
 }
 
 /* ============================ public methods ============================== */
-void	Form::beSigned(const Bureaucrat & bureaucrat)
+void	AForm::beSigned(const Bureaucrat & bureaucrat)
 {
 	if (bureaucrat.getGrade() > _gradeSigned)
-		throw Form::GradeTooLowException();
+		throw AForm::GradeTooLowException();
 	_signed = true;
 }
 
-const char	*Form::GradeTooHighException::what() const throw()
+const char	*AForm::GradeTooHighException::what() const throw()
 {
 	return ("Grade is too high");
 }
 
-const char	*Form::GradeTooLowException::what() const throw()
+const char	*AForm::GradeTooLowException::what() const throw()
 {
 	return ("Grade is too low");
 }
 
-std::ostream	&operator<<(std::ostream & str, const Form & form)
+std::ostream	&operator<<(std::ostream & str, const AForm & form)
 {
-	str << "\nForm " << form.getName()
+	str << "\nAForm " << form.getName()
 		<< "\nsigned: " << (form.getSigned() ? "yes" : "no")
 		<< "\ngrade to sign: " << form.getGradeSigned()
 		<< "\ngrade to execute: " << form.getGradeExecute();

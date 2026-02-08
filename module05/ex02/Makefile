@@ -6,18 +6,19 @@
 #    By: brturcio <brturcio@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/05 11:19:44 by brturcio          #+#    #+#              #
-#    Updated: 2026/02/08 12:55:03 by brturcio         ###   ########.fr        #
+#    Updated: 2026/02/08 12:54:31 by brturcio         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		:= form
+NAME		:= Aform
 CC			:= c++
 CFLAGS		:= -Wall -Wextra -Werror -std=c++98
 
 DIR_SRCS	:= sources/
 DIR_OBJS	:= objs/
 
-SOURCES		:= main.cpp Bureaucrat.cpp Form.cpp
+SOURCES		:= main.cpp Bureaucrat.cpp Form.cpp PresidentialPardonForm.cpp \
+			   RobotomyRequestForm.cpp ShrubberyCreationForm.cpp
 OBJECTS		:= $(addprefix $(DIR_OBJS), $(SOURCES:.cpp=.o))
 
 INCLUDES	:= -Iincludes

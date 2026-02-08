@@ -6,12 +6,12 @@
 /*   By: brturcio <brturcio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 15:18:54 by brturcio          #+#    #+#             */
-/*   Updated: 2026/02/08 10:43:50 by brturcio         ###   ########.fr       */
+/*   Updated: 2026/02/08 13:19:08 by brturcio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "AForm.hpp"
 #include <exception>
 #include <iostream>
 
@@ -85,7 +85,7 @@ const char	*Bureaucrat::GradeTooLowException::what() const throw()
 	return ("Grade is too low");
 }
 
-void	Bureaucrat::signForm(Form & form)
+void	Bureaucrat::signAForm(AForm & form)
 {
 	try {
 		form.beSigned(*this);
