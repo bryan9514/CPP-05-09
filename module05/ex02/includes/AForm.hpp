@@ -6,7 +6,7 @@
 /*   By: brturcio <brturcio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/07 10:32:39 by brturcio          #+#    #+#             */
-/*   Updated: 2026/02/08 14:12:28 by brturcio         ###   ########.fr       */
+/*   Updated: 2026/02/09 15:07:52 by brturcio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define AFORM_HPP
 
 #include <exception>
+#include <ostream>
 #include <string>
 class Bureaucrat;
 
@@ -21,6 +22,7 @@ class AForm
 {
 private:
 	const std::string	_name;
+	const std::string	_target;
 	bool				_signed;
 	const int			_gradeSigned;
 	const int			_gradeExecute;
