@@ -1,35 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   RobotomyRequestForm.hpp                            :+:      :+:    :+:   */
+/*   Intern.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brturcio <brturcio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/10 12:23:57 by brturcio          #+#    #+#             */
-/*   Updated: 2026/02/10 15:36:59 by brturcio         ###   ########.fr       */
+/*   Created: 2026/02/10 16:21:17 by brturcio          #+#    #+#             */
+/*   Updated: 2026/02/10 17:54:29 by brturcio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ROBOTOMYREQUESTFORM_HPP
-# define ROBOTOMYREQUESTFORM_HPP
-
 #include "AForm.hpp"
-#include <string>
+#include "Intern.hpp"
 
-class Bureaucrat;
+Intern::Intern(void)
+{}
 
-class RobotomyRequestForm : public AForm
+Intern::Intern(const Intern & copy)
 {
-private:
+	(void)copy;
+}
 
-public:
-	RobotomyRequestForm(void);
-	RobotomyRequestForm(const std::string & target);
-	RobotomyRequestForm(const RobotomyRequestForm & copy);
-	RobotomyRequestForm & operator=(const RobotomyRequestForm & other);
-	~RobotomyRequestForm(void);
-	
-	void	doAction(void) const;
-};
+Intern & Intern::operator=(const Intern & other)
+{
+	(void)other;
+	return (*this);
+}
 
-#endif
+AForm*	Intern::factoryForm(std::string nameForm, std::string target)
+{
+	AForm*	ptr = NULL;
+
+
+	return ();
+}

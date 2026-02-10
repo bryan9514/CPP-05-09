@@ -1,35 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   RobotomyRequestForm.hpp                            :+:      :+:    :+:   */
+/*   Intern.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brturcio <brturcio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/10 12:23:57 by brturcio          #+#    #+#             */
-/*   Updated: 2026/02/10 15:36:59 by brturcio         ###   ########.fr       */
+/*   Created: 2026/02/10 16:21:07 by brturcio          #+#    #+#             */
+/*   Updated: 2026/02/10 17:54:39 by brturcio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ROBOTOMYREQUESTFORM_HPP
-# define ROBOTOMYREQUESTFORM_HPP
+#ifndef INTERN_HPP
+# define INTERN_HPP
 
-#include "AForm.hpp"
 #include <string>
+class AForm;
 
-class Bureaucrat;
-
-class RobotomyRequestForm : public AForm
+class Intern
 {
 private:
 
 public:
-	RobotomyRequestForm(void);
-	RobotomyRequestForm(const std::string & target);
-	RobotomyRequestForm(const RobotomyRequestForm & copy);
-	RobotomyRequestForm & operator=(const RobotomyRequestForm & other);
-	~RobotomyRequestForm(void);
-	
-	void	doAction(void) const;
+	Intern(void);
+	Intern(const Intern & copy);
+	Intern & operator=(const Intern & other);
+	~Intern(void);
+
+	AForm*	factoryForm(std::string nameForm, std::string target);
 };
 
 #endif
