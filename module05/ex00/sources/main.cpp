@@ -6,7 +6,7 @@
 /*   By: brturcio <brturcio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 12:18:07 by brturcio          #+#    #+#             */
-/*   Updated: 2026/02/08 10:18:26 by brturcio         ###   ########.fr       */
+/*   Updated: 2026/02/11 15:50:21 by brturcio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,16 @@ int	main(void)
 	{
 		try
 		{
-			Bureaucrat	goodBure("Good", 10);
+			Bureaucrat	goodBure("Good", 1);
 
 			std::cout << goodBure << std::endl;
 			goodBure.decreaseGrade();
+			std::cout << goodBure << std::endl;
 			goodBure.decreaseGrade();
+			std::cout << goodBure << std::endl;
+			goodBure.increaseGrade();
+			std::cout << goodBure << std::endl;
+			goodBure.increaseGrade();
 			std::cout << goodBure << std::endl;
 		}
 		catch (std::exception & e)

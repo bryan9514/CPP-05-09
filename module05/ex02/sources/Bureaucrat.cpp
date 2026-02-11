@@ -6,7 +6,7 @@
 /*   By: brturcio <brturcio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 15:18:54 by brturcio          #+#    #+#             */
-/*   Updated: 2026/02/10 12:31:18 by brturcio         ###   ########.fr       */
+/*   Updated: 2026/02/11 15:47:07 by brturcio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ void	Bureaucrat::executeForm(const AForm & form) const
 			<< form.getName() << " because " << e.what() << std::endl;;
 	}
 }
+
 /* ============================== exceptions ==================================== */
 const char	*Bureaucrat::GradeTooHighException::what() const throw()
 {
@@ -110,10 +111,10 @@ const char	*Bureaucrat::GradeTooLowException::what() const throw()
 	return ("grade is too low");
 }
 
-/* ============================ operator (=) ===================================== */
+/* ============================ operator (<<) ===================================== */
 std::ostream	&operator<<(std::ostream & str, const Bureaucrat & bureaucrat)
 {
 	str << bureaucrat.getName() << ", bureaucrat grade " << bureaucrat.getGrade()
-		<< "." << std::endl;
+		<< ".";
 	return (str);
 }

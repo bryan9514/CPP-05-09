@@ -6,7 +6,7 @@
 /*   By: brturcio <brturcio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/07 10:32:49 by brturcio          #+#    #+#             */
-/*   Updated: 2026/02/10 12:37:39 by brturcio         ###   ########.fr       */
+/*   Updated: 2026/02/11 15:20:01 by brturcio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ void	AForm::execute(const Bureaucrat & execute) const
 	doAction();
 }
 
+/* ============================== exceptions ================================ */
 const char	*AForm::GradeTooHighException::what() const throw()
 {
 	return ("Grade is too high");
@@ -117,6 +118,7 @@ const char	*AForm::FormNotSignedException::what() const throw()
 	return ("form is not signed");
 }
 
+/* ============================ operator (<<) ================================ */
 std::ostream	&operator<<(std::ostream & str, const AForm & form)
 {
 	str << "\nAForm " << form.getName()

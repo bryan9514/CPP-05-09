@@ -6,7 +6,7 @@
 /*   By: brturcio <brturcio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 15:18:54 by brturcio          #+#    #+#             */
-/*   Updated: 2026/02/08 10:43:50 by brturcio         ###   ########.fr       */
+/*   Updated: 2026/02/11 15:46:50 by brturcio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ Bureaucrat & Bureaucrat::operator=(const Bureaucrat & other)
 Bureaucrat::~Bureaucrat(void)
 {}
 
-/* ============================ public methods ============================== */
 const std::string	&Bureaucrat::getName(void) const
 {
 	return (_name);
@@ -61,6 +60,7 @@ int			Bureaucrat::getGrade(void) const
 	return (_grade);
 }
 
+/* ============================ public methods ============================== */
 void	Bureaucrat::increaseGrade(void)
 {
 	if (_grade == 1)
@@ -75,16 +75,6 @@ void	Bureaucrat::decreaseGrade(void)
 	_grade++;
 }
 
-const char	*Bureaucrat::GradeTooHighException::what() const throw()
-{
-	return ("Grade is too high");
-}
-
-const char	*Bureaucrat::GradeTooLowException::what() const throw()
-{
-	return ("Grade is too low");
-}
-
 void	Bureaucrat::signForm(Form & form)
 {
 	try {
@@ -97,9 +87,21 @@ void	Bureaucrat::signForm(Form & form)
 	}
 }
 
+/* ============================== exceptions ================================ */
+const char	*Bureaucrat::GradeTooHighException::what() const throw()
+{
+	return ("Grade is too high");
+}
+
+const char	*Bureaucrat::GradeTooLowException::what() const throw()
+{
+	return ("Grade is too low");
+}
+
+/* ============================ operator (<<) ================================ */
 std::ostream	&operator<<(std::ostream & str, const Bureaucrat & bureaucrat)
 {
 	str << bureaucrat.getName() << ", bureaucrat grade " << bureaucrat.getGrade()
-		<< "." << std::endl;
+		<< ".";
 	return (str);
 }
