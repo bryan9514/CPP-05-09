@@ -6,7 +6,7 @@
 /*   By: brturcio <brturcio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/11 18:33:22 by brturcio          #+#    #+#             */
-/*   Updated: 2026/02/12 15:49:51 by brturcio         ###   ########.fr       */
+/*   Updated: 2026/02/12 17:35:48 by brturcio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ private:
 	ScalarConverter & operator=(const ScalarConverter & other);
 	~ScalarConverter(void);
 
-	static void	intConvert(int );
-	static void	floatConvert(const )
+	static void	intConvert(int argum);
+	static void	floatConvert(float argum);
 
 public:
 
