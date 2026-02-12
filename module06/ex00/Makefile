@@ -6,18 +6,18 @@
 #    By: brturcio <brturcio@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/11 18:33:14 by brturcio          #+#    #+#              #
-#    Updated: 2026/02/11 19:25:59 by brturcio         ###   ########.fr        #
+#    Updated: 2026/02/12 13:10:27 by brturcio         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		:= scalarconvert
+NAME		:= scalarconverter
 CC			:= c++
 CFLAGS		:= -Wall -Wextra -Werror -std=c++98
 
 DIR_SRCS	:= sources/
 DIR_OBJS	:= objs/
 
-SOURCES		:= main.cpp scalarconvert.cpp
+SOURCES		:= main.cpp ScalarConverter.cpp
 OBJECTS		:= $(addprefix $(DIR_OBJS), $(SOURCES:.cpp=.o))
 
 INCLUDES	:= -Iincludes
@@ -33,13 +33,17 @@ $(DIR_OBJS)%.o : $(DIR_SRCS)%.cpp
 
 $(NAME): $(OBJECTS)
 	@$(CC) $(CFLAGS) $(OBJECTS) -o $(NAME)
-
+	@echo "$(GREEN)✔ $(NAME) Created Successfully!$(RESET)"
 
 clean:
+	@rm -rf $(DIR_OBJS)
+	@echo "$(GREEN)✔ Objects Cleaned$(RESET)"
 
-fclean:
+fclean: clean
+	@rm -rf $(NAME)
+	@echo "$(GREEN)✔ Executable Cleaned$(RESET)"
 
-re:
+re: fclean all
 
 .PHONY: all clean fclean re
 
