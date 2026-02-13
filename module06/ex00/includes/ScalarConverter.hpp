@@ -6,7 +6,7 @@
 /*   By: brturcio <brturcio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/11 18:33:22 by brturcio          #+#    #+#             */
-/*   Updated: 2026/02/12 17:35:48 by brturcio         ###   ########.fr       */
+/*   Updated: 2026/02/13 16:47:52 by brturcio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,21 @@ private:
 
 public:
 
-	static void	convert(const std::string argum);
+	static void	convert(const std::string & argum);
 
 class BadNumberArguments : public std::exception
+{
+public:
+	virtual const char * what() const throw();
+};
+
+class IsNotInputValid : public std::exception
+{
+public:
+	virtual const char * what() const throw();
+};
+
+class InputEmpty : public std::exception
 {
 public:
 	virtual const char * what() const throw();
