@@ -1,30 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   B.hpp                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brturcio <brturcio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/12 12:33:36 by brturcio          #+#    #+#             */
-/*   Updated: 2026/02/16 10:34:05 by brturcio         ###   ########.fr       */
+/*   Created: 2026/02/16 13:20:57 by brturcio          #+#    #+#             */
+/*   Updated: 2026/02/16 16:31:44 by brturcio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScalarConverter.hpp"
-#include <iostream>
-#include <exception>
-#include <cstdlib>
+#ifndef B_HPP
+# define B_HPP
 
-int	main(int ac, char **av)
+#include "Base.hpp"
+
+class B : public Base
 {
-	{
-		try {
-			if (ac != 2)
-				throw  ScalarConverter::BadNumberArguments();
-			ScalarConverter::convert(av[1]);
-		} catch (std::exception & e) {
-			std::cout << e.what() << std::endl;
-		} 
-	}
-	return (0);
-}
+public:
+	~B(void);
+};
+
+#endif

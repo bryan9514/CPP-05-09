@@ -5,26 +5,31 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: brturcio <brturcio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/12 12:33:36 by brturcio          #+#    #+#             */
-/*   Updated: 2026/02/16 10:34:05 by brturcio         ###   ########.fr       */
+/*   Created: 2026/02/16 17:52:12 by brturcio          #+#    #+#             */
+/*   Updated: 2026/02/16 23:11:35 by brturcio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScalarConverter.hpp"
+#include "whatever.hpp"
 #include <iostream>
-#include <exception>
-#include <cstdlib>
 
-int	main(int ac, char **av)
+int main( void )
 {
-	{
-		try {
-			if (ac != 2)
-				throw  ScalarConverter::BadNumberArguments();
-			ScalarConverter::convert(av[1]);
-		} catch (std::exception & e) {
-			std::cout << e.what() << std::endl;
-		} 
-	}
+	int a = 2;
+	int b = 3;
+
+	::swap( a, b );
+	std::cout << "a = " << a << ", b = " << b << std::endl;
+	std::cout << "min( a, b ) = " << ::min( a, b ) << std::endl;
+	std::cout << "max( a, b ) = " << ::max( a, b ) << std::endl;
+	
+	std::string c = "chaine1";
+	std::string d = "chaine2";
+
+	::swap(c, d);
+	std::cout << "c = " << c << ", d = " << d << std::endl;
+	std::cout << "min( c, d ) = " << ::min( c, d ) << std::endl;
+	std::cout << "max( c, d ) = " << ::max( c, d ) << std::endl;
+	
 	return (0);
 }

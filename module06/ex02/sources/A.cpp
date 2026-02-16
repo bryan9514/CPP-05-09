@@ -1,30 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   A.cpp                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brturcio <brturcio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/12 12:33:36 by brturcio          #+#    #+#             */
-/*   Updated: 2026/02/16 10:34:05 by brturcio         ###   ########.fr       */
+/*   Created: 2026/02/16 13:20:33 by brturcio          #+#    #+#             */
+/*   Updated: 2026/02/16 13:28:32 by brturcio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScalarConverter.hpp"
-#include <iostream>
-#include <exception>
-#include <cstdlib>
+#include "A.hpp"
 
-int	main(int ac, char **av)
-{
-	{
-		try {
-			if (ac != 2)
-				throw  ScalarConverter::BadNumberArguments();
-			ScalarConverter::convert(av[1]);
-		} catch (std::exception & e) {
-			std::cout << e.what() << std::endl;
-		} 
-	}
-	return (0);
-}
+/* ================================ destructor ============================== */
+A::~A(void)
+{}

@@ -6,11 +6,12 @@
 /*   By: brturcio <brturcio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/11 18:33:28 by brturcio          #+#    #+#             */
-/*   Updated: 2026/02/13 17:08:44 by brturcio         ###   ########.fr       */
+/*   Updated: 2026/02/16 10:38:36 by brturcio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
+#include <cctype>
 #include <iostream>
 #include <cstdlib>
 #include <climits>
@@ -45,12 +46,12 @@ const char*	ScalarConverter::BadNumberArguments::what() const  throw()
 	return ("Invalid number of arguments");
 }
 
-const char*	ScalarConverter::IsNotInputValid :what() const throw()
+const char*	ScalarConverter::IsNotInputValid::what() const throw()
 {
 	return ("Input is not valid");
 }
 
-const char*	ScalarConverter::InputEmpty:what() const throw()
+const char*	ScalarConverter::InputEmpty::what() const throw()
 {
 	return ("Input empty");
 }
@@ -152,6 +153,13 @@ static int	handleFloat(double num)
 		charResult += static_cast<char>(num);
 		charResult += "'";
 	}
+	if (num < INT_MIN || num > INT_MAX) {
+		std::cout << "char: " << charResult << std::endl;
+		std::cout << "int: " << "impossible" <<std::endl;
+		std::cout << "float: " << std::fixed << std::setprecision(1) << static_cast<float>(num) << "f" << std::endl;
+		std::cout << "double: " << std::fixed << std::setprecision(1) << num << std::endl;
+		return (1);
+	}
 	printAll(charResult, static_cast<int>(num), static_cast<float>(num), num);
 	return (1);
 }
@@ -167,10 +175,8 @@ static int	isFloat(const std::string & argum)
 	numDouble = std::strtod(argum.c_str(), &end);
 	if (errno == ERANGE)
 		return (0);
-	//Después del número convertido, el siguiente carácter debe ser exactamente 'f'
 	if (*end != 'f')
 		return (0);
-	//verifica que no haya nada después de la f
 	if (*(end + 1) != '\0')
 		return (0);
 	handleFloat(numDouble);
@@ -190,6 +196,13 @@ static int	handleDouble(double num)
 		charResult += static_cast<char>(num);
 		charResult += "'";
 	}
+	if (num < INT_MIN || num > INT_MAX) {
+		std::cout << "char: " << charResult << std::endl;
+		std::cout << "int: " << "impossible" <<std::endl;
+		std::cout << "float: " << std::fixed << std::setprecision(1) << static_cast<float>(num) << "f" << std::endl;
+		std::cout << "double: " << std::fixed << std::setprecision(1) << num << std::endl;
+		return (1);
+	}
 	printAll(charResult, static_cast<int>(num), static_cast<float>(num), num);
 	return (1);
 }
@@ -204,13 +217,21 @@ static int	isDouble(const std::string & argum)
 		return (0);
 	if (*end != '\0')
 		return (0);
-	handleDouble(numDouble);
+	handleDouble(numDouble); 
 	return (1);
 }
 
 static int	isChar(const std::string & argum)
 {
-	if (argum.size())
+	std::string	charResult;
+	
+	if (argum.size() != 1 || std::isdigit(argum[0]))
+		return (0);
+	charResult = "'";
+	charResult += static_cast<char>(argum[0]);
+	charResult += "'";
+	printAll(charResult, static_cast<int>(argum[0]), static_cast<float>(argum[0]), static_cast<double>(argum[0]));
+	return (1);
 }
 
 void	ScalarConverter::convert(const std::string & argum)

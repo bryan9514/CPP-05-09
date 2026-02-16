@@ -1,30 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Base.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brturcio <brturcio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/12 12:33:36 by brturcio          #+#    #+#             */
-/*   Updated: 2026/02/16 10:34:05 by brturcio         ###   ########.fr       */
+/*   Created: 2026/02/16 12:42:54 by brturcio          #+#    #+#             */
+/*   Updated: 2026/02/16 13:04:33 by brturcio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScalarConverter.hpp"
-#include <iostream>
-#include <exception>
-#include <cstdlib>
+#ifndef BASE_HPP
+# define BASE_HPP
 
-int	main(int ac, char **av)
+class Base
 {
-	{
-		try {
-			if (ac != 2)
-				throw  ScalarConverter::BadNumberArguments();
-			ScalarConverter::convert(av[1]);
-		} catch (std::exception & e) {
-			std::cout << e.what() << std::endl;
-		} 
-	}
-	return (0);
-}
+public:
+	virtual ~Base(void);
+};
+
+#endif
