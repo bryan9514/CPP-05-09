@@ -1,34 +1,13 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   iter.hpp                                           :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brturcio <brturcio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/16 23:16:20 by brturcio          #+#    #+#             */
-/*   Updated: 2026/02/19 19:41:43 by brturcio         ###   ########.fr       */
+/*   Created: 2026/02/19 19:49:12 by brturcio          #+#    #+#             */
+/*   Updated: 2026/02/19 19:49:12 by brturcio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ITER_HPP
-# define ITER_HPP
-
-# define RST "\033[0m"
-# define ERR "\033[0;91m"
-# define WRN "\033[0;93m"
-# define SUC "\033[0;92m"
-# define INF "\033[0;96m"
-# define INP "\033[0;94m"
-
-#include <cstddef>
-
-template <typename T, typename F>
-
-void	iter(T *array, const size_t arr_size, F func)
-{
-	for(size_t i = 0; i < arr_size; i++)
-		func(array[i]);
-}
-
-#endif
 
