@@ -1,29 +1,13 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Array.hpp                                          :+:      :+:    :+:   */
+/*   Array.tpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brturcio <brturcio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/19 19:48:59 by brturcio          #+#    #+#             */
-/*   Updated: 2026/02/20 11:03:06 by brturcio         ###   ########.fr       */
+/*   Created: 2026/02/20 11:02:40 by brturcio          #+#    #+#             */
+/*   Updated: 2026/02/20 11:02:42 by brturcio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ARRAY_HPP
-# define ARRAY_HPP
 
-template <typename T>
-
-class Array
-{
-private:
-	T*	arr;
-
-public:
-	Array(void);
-	Array(unsigned int n);
-
-};
-
-#endif
