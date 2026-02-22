@@ -6,7 +6,7 @@
 /*   By: brturcio <brturcio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 19:49:12 by brturcio          #+#    #+#             */
-/*   Updated: 2026/02/21 18:09:49 by brturcio         ###   ########.fr       */
+/*   Updated: 2026/02/22 09:43:44 by brturcio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	printArray(T & tabl)
 int	main(void)
 {
 	{
+		std::cout << SUC;
 		Array<int>	tabl(10);
 		try {
 			std::cout << "\n========== Created int Array ==========\n";
@@ -37,8 +38,10 @@ int	main(void)
 		} catch (std::exception & e) {
 			std::cout << e.what() << std::endl;
 		}
+		std::cout << RST;
 	}
 	{
+		std::cout << INF;
 		Array<std::string>	tabl(26);
 		try {
 			std::cout << "\n======== Created string Array =========\n";
@@ -48,8 +51,10 @@ int	main(void)
 		} catch (std::exception & e) {
 			std::cout << e.what() << std::endl;
 		}
+		std::cout << RST;
 	}
 	{
+		std::cout << SUC;
 		Array<int>	tabl(10);
 		try {
 			std::cout << "\n========== Created int Array index out ==========\n";
@@ -59,8 +64,10 @@ int	main(void)
 		} catch (std::exception & e) {
 			std::cout << e.what() << std::endl;
 		}
+		std::cout << RST;
 	}
 	{
+		std::cout << INF;
 		Array<float>	tabl(2);
 		Array<float>	asignamentTabl(2);
 		try {
@@ -73,8 +80,10 @@ int	main(void)
 		} catch (std::exception & e) {
 			std::cout << e.what() << std::endl;
 		}
+		std::cout << RST;
 	}
 	{
+		std::cout << SUC;
 		Array<int>	tabl(2);
 		try {
 			tabl[0] = 0;
@@ -86,6 +95,7 @@ int	main(void)
 		} catch (std::exception & e) {
 			std::cout << e.what() << std::endl;
 		}
+		std::cout << RST;
 	}
 	return (0);
 }

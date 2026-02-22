@@ -23,13 +23,13 @@ Array<T>::Array(void) :
 /* ======================== parameter constructor =========================== */
 template <typename T>
 Array<T>::Array(unsigned int n) :
-	_arr(new T[n]),
+	_arr(new T[n]()),
 	_size(n)
 {}
 
 /* =========================== copy constructor ============================= */
 template <typename T>
-Array<T>::Array(const Array<T> & copy) :
+Array<T>::Array(const Array & copy) :
 	_arr(NULL),
 	_size(0)
 {
