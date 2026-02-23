@@ -6,14 +6,13 @@
 /*   By: brturcio <brturcio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 11:10:52 by brturcio          #+#    #+#             */
-/*   Updated: 2026/02/22 15:07:45 by brturcio         ###   ########.fr       */
+/*   Updated: 2026/02/23 10:36:08 by brturcio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EASYFIND_HPP
 # define EASYFIND_HPP
 
-#include <algorithm>
 #include <exception>
 
 # define RST "\033[0m"
@@ -35,12 +34,10 @@ public:
 template <typename T>
 typename T::iterator	easyfind(T & one, int two)
 {
-	typename T::iterator	iter;
-
-	iter = find(one.begin(), one.end(), two);
-	if (iter == one.end())
-		throw notOccurrenceIsFind();
-	return (iter);
+	for (typename T::iterator it = one.begin(); it != one.end(); it++)
+		if (*it == two)
+			return (it);
+	throw notOccurrenceIsFind();
 }
 
 #endif

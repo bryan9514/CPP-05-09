@@ -1,0 +1,195 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: brturcio <brturcio@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2026/02/22 10:37:06 by brturcio          #+#    #+#              #
+#    Updated: 2026/02/23 10:47:54 by brturcio         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+NAME		:= span
+CC			:= c++
+CFLAGS		:= -Wall -Wextra -Werror -std=c++98
+
+DIR_SRCS	:= sources/
+DIR_OBJS	:= objs/
+
+SOURCES		:= main.cpp Span.cpp
+OBJECTS		:= $(addprefix $(DIR_OBJS), $(SOURCES:.cpp=.o))
+
+INCLUDES	:= -Iincludes
+
+GREEN		:= \033[0;32m
+RESET		:= \033[0m
+
+all: $(NAME)
+
+$(DIR_OBJS)%.o: $(DIR_SRCS)%.cpp
+	@mkdir -p $(DIR_OBJS)
+	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+
+$(NAME): $(OBJECTS)
+	@$(CC) $(CFLAGS) $(OBJECTS) -o $(NAME)
+	@echo "$(GREEN)✔ $(NAME) Created Successfully!$(RESET)"
+
+clean:
+	@rm -rf $(DIR_OBJS)
+	@echo "$(GREEN)✔ Objects Cleaned$(RESET)"
+
+fclean: clean
+	@rm -rf $(NAME)
+	@echo "$(GREEN)✔ Excecutable Cleaned$(RESET)"
+
+re: fclean all
+
+.PHONY: all clean fclean re
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Span.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: brturcio <brturcio@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/02/23 10:49:02 by brturcio          #+#    #+#             */
+/*   Updated: 2026/02/23 14:57:04 by brturcio         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "Span.hpp"
+
+/* =========================== default constructor ========================== */
+Span::Span(void) :
+	_vec(0),
+	_size(0)
+{}
+
+/* ======================== parameter constructor =========================== */
+Span::Span(unsigned int n) :
+	_vec(0),
+	_size(n)
+{}
+
+/* =========================== copy constructor ============================= */
+Span::Span(const Span & copy)
+{
+	_vec = copy._vec;
+}
+
+/* ==================== copy assignment operator (=) ======================== */
+Span & Span::operator=(const Span & other)
+{
+	if (this != &other) {
+		_vec = other._vec;
+		_size = other._size;
+	}
+	return (*this);
+}
+
+/* ================================ destructor ============================== */
+Span::~Span(void)
+{}
+
+/* ============================ public methods ============================== */
+void	Span::addNumber(int newN)
+{
+	if (_vec.size() >= _size)
+		return ;
+	_vec.push_back(newN);
+}
+
+
+/* ============================== exceptions ================================ */
+const char * Span::FullVectorException::what() const throw()
+{
+	return ("Cannot add number: span is already full.");
+}
+
+const char * Span::InsufficientNumbersException::what() const throw()
+{
+	return ("Insufficient elements to calculate span.");
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: brturcio <brturcio@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/02/22 10:47:12 by brturcio          #+#    #+#             */
+/*   Updated: 2026/02/23 14:57:48 by brturcio         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "Span.hpp"
+#include <iostream>
+
+int	main(void)
+{
+	Span sp = Span(5);
+	sp.addNumber(6);
+	sp.addNumber(3);
+	sp.addNumber(17);
+	sp.addNumber(9);
+	sp.addNumber(11);
+
+	sp.addNumber(100000);
+	for (size_t i = 0; i < sp.getVec().size(); i++)
+		std::cout << sp.getVec()[i] << std::endl;
+//	std::cout << sp.shortestSpan() << std::endl;
+//	std::cout << sp.longestSpan() << std::endl;
+	return (0);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Span.hpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: brturcio <brturcio@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/02/23 10:49:05 by brturcio          #+#    #+#             */
+/*   Updated: 2026/02/23 14:54:37 by brturcio         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef SPAN_HPP
+# define SPAN_HPP
+
+#include <exception>
+#include <vector>
+
+class Span
+{
+private:
+	std::vector<int>	_vec;
+	unsigned int		_size;
+
+	Span(void);
+public:
+	Span(unsigned int n);
+	Span(const Span & copy);
+	Span & operator=(const Span & other);
+	~Span(void);
+
+	void	addNumber(int newN);
+	int		shortestSpan();
+	int		longestSpan();
+
+	std::vector<int>	getVec(void)
+	{
+		return (_vec);
+	}
+class FullVectorException : public std::exception
+{
+	virtual const char * what() const throw();
+};
+
+class InsufficientNumbersException : public std::exception
+{
+	virtual const char * what() const throw();
+};
+};
+
+#endif
