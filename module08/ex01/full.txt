@@ -54,11 +54,13 @@ re: fclean all
 /*   By: brturcio <brturcio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 10:49:02 by brturcio          #+#    #+#             */
-/*   Updated: 2026/02/23 14:57:04 by brturcio         ###   ########.fr       */
+/*   Updated: 2026/02/24 12:17:48 by brturcio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Span.hpp"
+#include <algorithm>
+#include <cstdlib>
 
 /* =========================== default constructor ========================== */
 Span::Span(void) :
@@ -76,6 +78,7 @@ Span::Span(unsigned int n) :
 Span::Span(const Span & copy)
 {
 	_vec = copy._vec;
+	_size = copy._size;
 }
 
 /* ==================== copy assignment operator (=) ======================== */
@@ -92,14 +95,47 @@ Span & Span::operator=(const Span & other)
 Span::~Span(void)
 {}
 
+/* ================================= getters ================================ */
+std::vector<int>&	Span::getVec(void)
+{
+	return (_vec);
+}
+
 /* ============================ public methods ============================== */
 void	Span::addNumber(int newN)
 {
 	if (_vec.size() >= _size)
-		return ;
+		throw FullVectorException();
 	_vec.push_back(newN);
 }
 
+int	Span::longestSpan(void)
+{
+	int	max = 0;
+
+	if (_vec.size() <= 1)
+		throw InsufficientNumbersException();
+	std::vector<int>	tmp = _vec;
+	std::sort(tmp.begin(), tmp.end());
+	max = tmp[tmp.size() - 1] - tmp[0];
+	return (max);
+}
+
+int	Span::shortestSpan(void)
+{
+	int	min = 0;
+
+	if (_vec.size() <= 1)
+		throw InsufficientNumbersException();
+	std::vector<int>	tmp = _vec;
+	std::sort(tmp.begin(), tmp.end());
+	min = tmp[1] - tmp[0];
+	for (unsigned int i = 2; i < tmp.size(); i++) {
+		if (tmp[i] - tmp[i - 1] < min)
+			min = tmp[i] - tmp[i - 1];
+	}
+	return (min);
+}
 
 /* ============================== exceptions ================================ */
 const char * Span::FullVectorException::what() const throw()
@@ -119,27 +155,92 @@ const char * Span::InsufficientNumbersException::what() const throw()
 /*   By: brturcio <brturcio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 10:47:12 by brturcio          #+#    #+#             */
-/*   Updated: 2026/02/23 14:57:48 by brturcio         ###   ########.fr       */
+/*   Updated: 2026/02/24 13:22:53 by brturcio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Span.hpp"
+#include <exception>
 #include <iostream>
+#include <list>
+
+template <typename T>
+void	printArray(T & tabl)
+{
+	for (unsigned int i = 0; i < tabl.size(); i++) {
+		std::cout << tabl[i];
+		if (i < tabl.size() - 1)
+			std::cout << ", ";
+	}
+	std::cout << std::endl;
+}
 
 int	main(void)
 {
-	Span sp = Span(5);
-	sp.addNumber(6);
-	sp.addNumber(3);
-	sp.addNumber(17);
-	sp.addNumber(9);
-	sp.addNumber(11);
+	std::list<int>	l;
+	l.push_back(10);
+	l.push_back(1);
+	l.push_back(5);
+	l.push_back(90);
+	l.push_back(50);
+	l.push_back(12);
 
-	sp.addNumber(100000);
-	for (size_t i = 0; i < sp.getVec().size(); i++)
-		std::cout << sp.getVec()[i] << std::endl;
-//	std::cout << sp.shortestSpan() << std::endl;
-//	std::cout << sp.longestSpan() << std::endl;
+	{
+		std::cout << "============================ Test subject ============================\n\n";		
+		try {
+			Span sp = Span(5);
+			
+			sp.addNumber(6);
+			sp.addNumber(3);
+			sp.addNumber(17);
+			sp.addNumber(9);
+			sp.addNumber(11);
+			printArray(sp.getVec());
+			std::cout << INF << sp.shortestSpan() << RST << std::endl;
+			std::cout << SUC << sp.longestSpan() << RST << std::endl;
+		} catch (std::exception & e){
+			std::cout << ERR << e.what() << SUC << std::endl;
+		}
+	}
+	{
+		std::cout << "\n============================ insertRange ============================\n\n";		
+		try {
+			Span	sp = Span(6);
+
+			sp.insertRange(l.begin(), l.end());
+			printArray(sp.getVec());
+			std::cout << INF << sp.shortestSpan() << RST << std::endl;
+			std::cout << SUC << sp.longestSpan() << RST << std::endl;
+		} catch (std::exception & e) {
+			std::cout << ERR << e.what() << SUC << std::endl;
+		}
+	}
+	{
+		std::cout << RST << "\n============================ Full vector ============================\n\n";		
+		try {
+			Span	sp = Span(2);
+
+			sp.insertRange(l.begin(), l.end());
+			std::cout << INF << sp.shortestSpan() << RST << std::endl;
+			std::cout << SUC << sp.longestSpan() << RST << std::endl;
+			printArray(sp.getVec());
+		} catch (std::exception & e) {
+			std::cout << ERR << e.what() << SUC << std::endl;
+		}
+	}
+	{
+		std::cout << RST << "\n============================ Only one value ============================\n\n";		
+		try {
+			Span	sp = Span(1);
+			
+			sp.addNumber(2);
+			std::cout << INF << sp.shortestSpan() << RST << std::endl;
+			std::cout << SUC << sp.longestSpan() << RST << std::endl;
+			printArray(sp.getVec());
+		} catch (std::exception & e) {
+			std::cout << ERR << e.what() << SUC << std::endl;
+		}
+	}
 	return (0);
 }
 /* ************************************************************************** */
@@ -150,7 +251,7 @@ int	main(void)
 /*   By: brturcio <brturcio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 10:49:05 by brturcio          #+#    #+#             */
-/*   Updated: 2026/02/23 14:54:37 by brturcio         ###   ########.fr       */
+/*   Updated: 2026/02/24 12:28:07 by brturcio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,7 +259,15 @@ int	main(void)
 # define SPAN_HPP
 
 #include <exception>
+#include <iterator>
 #include <vector>
+
+# define RST "\033[0m"
+# define ERR "\033[0;91m"
+# define WRN "\033[0;93m"
+# define SUC "\033[0;92m"
+# define INF "\033[0;96m"
+# define INP "\033[0;94m"
 
 class Span
 {
@@ -173,14 +282,21 @@ public:
 	Span & operator=(const Span & other);
 	~Span(void);
 
+	template <typename T>
+	void	insertRange(T begin, T end)
+	{
+		size_t	distance = static_cast<size_t>(std::distance(begin, end)) ;
+
+		if (_vec.size() + distance > _size)
+			throw FullVectorException();
+		_vec.insert(_vec.end(), begin, end);
+	}
 	void	addNumber(int newN);
 	int		shortestSpan();
 	int		longestSpan();
-
-	std::vector<int>	getVec(void)
-	{
-		return (_vec);
-	}
+	
+	std::vector<int> &	getVec(void);
+	
 class FullVectorException : public std::exception
 {
 	virtual const char * what() const throw();

@@ -6,11 +6,13 @@
 /*   By: brturcio <brturcio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 10:49:02 by brturcio          #+#    #+#             */
-/*   Updated: 2026/02/23 15:46:41 by brturcio         ###   ########.fr       */
+/*   Updated: 2026/02/24 12:17:48 by brturcio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Span.hpp"
+#include <algorithm>
+#include <cstdlib>
 
 /* =========================== default constructor ========================== */
 Span::Span(void) :
@@ -28,6 +30,7 @@ Span::Span(unsigned int n) :
 Span::Span(const Span & copy)
 {
 	_vec = copy._vec;
+	_size = copy._size;
 }
 
 /* ==================== copy assignment operator (=) ======================== */
@@ -44,6 +47,12 @@ Span & Span::operator=(const Span & other)
 Span::~Span(void)
 {}
 
+/* ================================= getters ================================ */
+std::vector<int>&	Span::getVec(void)
+{
+	return (_vec);
+}
+
 /* ============================ public methods ============================== */
 void	Span::addNumber(int newN)
 {
@@ -55,18 +64,30 @@ void	Span::addNumber(int newN)
 int	Span::longestSpan(void)
 {
 	int	max = 0;
-	
-	for (unsigned int i = 0; i < _size; i++) {
-		for (unsigned int j = i + 1; j < _size - 1 ; j++) {
-			if (_vec[i] > _vec[j])
-				max = _vec[i];
-			else
-				max = _vec[j];
-		}
-	}
+
+	if (_vec.size() <= 1)
+		throw InsufficientNumbersException();
+	std::vector<int>	tmp = _vec;
+	std::sort(tmp.begin(), tmp.end());
+	max = tmp[tmp.size() - 1] - tmp[0];
 	return (max);
 }
 
+int	Span::shortestSpan(void)
+{
+	int	min = 0;
+
+	if (_vec.size() <= 1)
+		throw InsufficientNumbersException();
+	std::vector<int>	tmp = _vec;
+	std::sort(tmp.begin(), tmp.end());
+	min = tmp[1] - tmp[0];
+	for (unsigned int i = 2; i < tmp.size(); i++) {
+		if (tmp[i] - tmp[i - 1] < min)
+			min = tmp[i] - tmp[i - 1];
+	}
+	return (min);
+}
 
 /* ============================== exceptions ================================ */
 const char * Span::FullVectorException::what() const throw()

@@ -6,7 +6,7 @@
 /*   By: brturcio <brturcio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 10:49:05 by brturcio          #+#    #+#             */
-/*   Updated: 2026/02/23 14:54:37 by brturcio         ###   ########.fr       */
+/*   Updated: 2026/02/24 12:28:07 by brturcio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,15 @@
 # define SPAN_HPP
 
 #include <exception>
+#include <iterator>
 #include <vector>
+
+# define RST "\033[0m"
+# define ERR "\033[0;91m"
+# define WRN "\033[0;93m"
+# define SUC "\033[0;92m"
+# define INF "\033[0;96m"
+# define INP "\033[0;94m"
 
 class Span
 {
@@ -29,14 +37,21 @@ public:
 	Span & operator=(const Span & other);
 	~Span(void);
 
+	template <typename T>
+	void	insertRange(T begin, T end)
+	{
+		size_t	distance = static_cast<size_t>(std::distance(begin, end)) ;
+
+		if (_vec.size() + distance > _size)
+			throw FullVectorException();
+		_vec.insert(_vec.end(), begin, end);
+	}
 	void	addNumber(int newN);
 	int		shortestSpan();
 	int		longestSpan();
-
-	std::vector<int>	getVec(void)
-	{
-		return (_vec);
-	}
+	
+	std::vector<int> &	getVec(void);
+	
 class FullVectorException : public std::exception
 {
 	virtual const char * what() const throw();
