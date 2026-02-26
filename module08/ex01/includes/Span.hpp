@@ -6,7 +6,7 @@
 /*   By: brturcio <brturcio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 10:49:05 by brturcio          #+#    #+#             */
-/*   Updated: 2026/02/24 12:28:07 by brturcio         ###   ########.fr       */
+/*   Updated: 2026/02/24 18:59:03 by brturcio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,10 @@ public:
 		_vec.insert(_vec.end(), begin, end);
 	}
 	void	addNumber(int newN);
-	int		shortestSpan();
-	int		longestSpan();
+	int		shortestSpan() const;
+	int		longestSpan() const;
 	
-	std::vector<int> &	getVec(void);
+	const std::vector<int> &	getVec(void) const;
 	
 class FullVectorException : public std::exception
 {

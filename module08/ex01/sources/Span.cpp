@@ -6,7 +6,7 @@
 /*   By: brturcio <brturcio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 10:49:02 by brturcio          #+#    #+#             */
-/*   Updated: 2026/02/24 12:17:48 by brturcio         ###   ########.fr       */
+/*   Updated: 2026/02/24 18:58:52 by brturcio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ Span::~Span(void)
 {}
 
 /* ================================= getters ================================ */
-std::vector<int>&	Span::getVec(void)
+const std::vector<int>&	Span::getVec(void) const
 {
 	return (_vec);
 }
@@ -61,7 +61,7 @@ void	Span::addNumber(int newN)
 	_vec.push_back(newN);
 }
 
-int	Span::longestSpan(void)
+int	Span::longestSpan(void) const
 {
 	int	max = 0;
 
@@ -73,7 +73,7 @@ int	Span::longestSpan(void)
 	return (max);
 }
 
-int	Span::shortestSpan(void)
+int	Span::shortestSpan(void) const
 {
 	int	min = 0;
 
@@ -82,7 +82,7 @@ int	Span::shortestSpan(void)
 	std::vector<int>	tmp = _vec;
 	std::sort(tmp.begin(), tmp.end());
 	min = tmp[1] - tmp[0];
-	for (unsigned int i = 2; i < tmp.size(); i++) {
+	for (size_t i = 2; i < tmp.size(); i++) {
 		if (tmp[i] - tmp[i - 1] < min)
 			min = tmp[i] - tmp[i - 1];
 	}
