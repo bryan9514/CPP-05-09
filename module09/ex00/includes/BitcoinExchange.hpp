@@ -6,7 +6,7 @@
 /*   By: brturcio <brturcio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/18 10:23:57 by brturcio          #+#    #+#             */
-/*   Updated: 2026/03/18 11:43:06 by brturcio         ###   ########.fr       */
+/*   Updated: 2026/03/18 12:23:57 by brturcio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ public:
 	BitcoinExchange & operator=(const BitcoinExchange & other);
 	~BitcoinExchange(void);
 
-	void	openFile(std::string & name);
+	void	openFile(const std::string & name);
+	void	tokenizer(std::string & line);
 
 };
 
