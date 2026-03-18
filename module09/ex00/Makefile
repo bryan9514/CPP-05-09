@@ -6,7 +6,7 @@
 #    By: brturcio <brturcio@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/07 13:12:10 by brturcio          #+#    #+#              #
-#    Updated: 2026/03/14 16:16:05 by brturcio         ###   ########.fr        #
+#    Updated: 2026/03/18 11:32:21 by brturcio         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ CFLAGS		:= -Wall -Wextra -Werror -std=c++98
 DIR_SRSC	:= sources/
 DIR_OBJS	:= objects/
 
-SOURCES		:= main.cpp
+SOURCES		:= main.cpp BitcoinExchange.cpp
 OBJECTS		:= $(addprefix $(DIR_OBJS), $(SOURCES:.cpp=.o))
 
 INCLUDES	:= -Iincludes
