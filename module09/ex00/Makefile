@@ -6,7 +6,7 @@
 #    By: brturcio <brturcio@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/07 13:12:10 by brturcio          #+#    #+#              #
-#    Updated: 2026/03/07 13:31:04 by brturcio         ###   ########.fr        #
+#    Updated: 2026/03/14 16:16:05 by brturcio         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,10 +36,10 @@ $(NAME): $(OBJECTS)
 	@echo "$(GREEN)✔ $(NAME) Created Successfully!$(RESET)"
 
 clean: 
-	@-rm rf $(DIR_OBJS)
+	@rm -rf $(DIR_OBJS)
 	@echo "$(GREEN)✔ Objects Cleaned$(RESET)"
 
-fclena: clean
+fclean: clean
 	@rm -rf $(NAME)
 	@echo "$(GREEN)✔ Excecutable Cleaned$(RESET)"
 
