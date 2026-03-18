@@ -6,13 +6,13 @@
 #    By: brturcio <brturcio@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/07 13:12:10 by brturcio          #+#    #+#              #
-#    Updated: 2026/03/18 11:32:21 by brturcio         ###   ########.fr        #
+#    Updated: 2026/03/18 18:00:20 by brturcio         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		:= btc
 CC			:= c++
-CFLAGS		:= -Wall -Wextra -Werror -std=c++98
+CFLAGS		:= -Wall -Wextra -Werror -std=c++98 -g
 
 DIR_SRSC	:= sources/
 DIR_OBJS	:= objects/
