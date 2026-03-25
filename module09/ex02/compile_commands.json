@@ -1,0 +1,20 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/c++",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-std=c++98",
+      "-g",
+      "-Iincludes",
+      "-c",
+      "-o",
+      "objects/main.o",
+      "sources/main.cpp"
+    ],
+    "directory": "/home/bt24/42Cursus/circle05/CPP/module09/ex03",
+    "file": "/home/bt24/42Cursus/circle05/CPP/module09/ex03/sources/main.cpp",
+    "output": "/home/bt24/42Cursus/circle05/CPP/module09/ex03/objects/main.o"
+  }
+]

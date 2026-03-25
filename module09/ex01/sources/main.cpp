@@ -5,30 +5,26 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: brturcio <brturcio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/07 13:28:16 by brturcio          #+#    #+#             */
-/*   Updated: 2026/03/21 21:40:28 by brturcio         ###   ########.fr       */
+/*   Created: 2026/03/21 22:06:21 by brturcio          #+#    #+#             */
+/*   Updated: 2026/03/23 13:08:27 by brturcio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "BitcoinExchange.hpp"
-#include <exception>
+#include "RPN.hpp"
 #include <iostream>
 
-int	main(int ac, char **av)
+int main(int ac, char **av)
 {
-	(void)av;
 	if (ac != 2) {
-		std::cout << "Error: could not open file." << std::endl;
+		std::cerr << ERR << "Error" << RST << std::endl;
 		return (1);
 	}
-	
-	BitcoinExchange	btc;
 	try {
-		btc.loadData();
-		btc.processInput(av[1]);
-	} catch (const std::exception & e) {
-		std::cout << ERR << e.what() << RST << std::endl;
+		RPN rpn;
+		rpn.process(av[1]);
+	} catch (std::exception & e) {
+		std::cerr << ERR << "Error" << RST << std::endl;
 		return (1);
 	}
-	return(0);
+	return (0);
 }

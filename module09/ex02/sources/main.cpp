@@ -5,30 +5,34 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: brturcio <brturcio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/07 13:28:16 by brturcio          #+#    #+#             */
-/*   Updated: 2026/03/21 21:40:28 by brturcio         ###   ########.fr       */
+/*   Created: 2026/03/23 20:37:41 by brturcio          #+#    #+#             */
+/*   Updated: 2026/03/25 15:57:14 by brturcio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "BitcoinExchange.hpp"
+#include "PmergeMe.hpp"
 #include <exception>
 #include <iostream>
 
 int	main(int ac, char **av)
 {
-	(void)av;
-	if (ac != 2) {
-		std::cout << "Error: could not open file." << std::endl;
-		return (1);
-	}
-	
-	BitcoinExchange	btc;
+
 	try {
-		btc.loadData();
-		btc.processInput(av[1]);
+		if (ac == 1)
+			controlErrors(MISSINGARGS, "");
+		else if (ac - 1 > 3000)
+			controlErrors(MAXARG, "3000");
+		PmergeMe	pMergeMe;
+
+		pMergeMe.checkInput(ac, av);
+		pMergeMe.printfInput(ac, av);
+		pMergeMe.sortVector();
+		pMergeMe.sortDeque();
+		pMergeMe.printfInputSort();
+		pMergeMe.printfTime();
 	} catch (const std::exception & e) {
-		std::cout << ERR << e.what() << RST << std::endl;
+		std::cerr << ERR << e.what() << RST << std::endl;
 		return (1);
 	}
-	return(0);
+	return (0);
 }
