@@ -6,7 +6,7 @@
 /*   By: brturcio <brturcio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/21 22:09:10 by brturcio          #+#    #+#             */
-/*   Updated: 2026/03/23 11:27:17 by brturcio         ###   ########.fr       */
+/*   Updated: 2026/03/25 17:06:01 by brturcio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,16 @@
 #include <stdexcept>
 #include <cctype>
 
+/* =========================== default constructor ========================== */
 RPN::RPN(void)
 {}
 
+/* =========================== copy constructor ============================= */
 RPN::RPN(const RPN & copy) :
 	_stack(copy._stack)
 {}
 
+/* ==================== copy assignment operator (=) ======================== */
 RPN &	RPN::operator=(const RPN & other)
 {
 	if (this != &other) {
@@ -30,9 +33,11 @@ RPN &	RPN::operator=(const RPN & other)
 	return (*this);
 }
 
+/* ================================ destructor ============================== */
 RPN::~RPN(void)
 {}
 
+/* ============================ private methods ============================== */
 bool RPN::isOperator(const std::string & token)
 {
 	if (token == "+" || token == "-" || token == "*" || token == "/")
@@ -92,6 +97,7 @@ void	RPN::calculOperation(std::string & currentToken)
 	_stack.push(applyOperation(a, b, currentToken));
 }
 
+/* ============================ public methods ============================== */
 void RPN::process(const std::string & input)
 {
 	std::string	tokens = input;
@@ -111,5 +117,5 @@ void RPN::process(const std::string & input)
 	}
 	if (_stack.size() != 1)
 		throw std::runtime_error("Error");
-	std::cout << _stack.top() << std::endl;
+	std::cout << INF << _stack.top() << RST << std::endl;
 }

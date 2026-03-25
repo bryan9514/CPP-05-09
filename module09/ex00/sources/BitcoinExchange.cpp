@@ -6,7 +6,7 @@
 /*   By: brturcio <brturcio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/18 11:26:26 by brturcio          #+#    #+#             */
-/*   Updated: 2026/03/21 21:46:39 by brturcio         ###   ########.fr       */
+/*   Updated: 2026/03/25 16:57:17 by brturcio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,17 @@
 #include <iostream>
 #include <stdlib.h>
 
+/* =========================== default constructor ========================== */
 BitcoinExchange::BitcoinExchange(void) :
 	_data()
 {}
 
+/* =========================== copy constructor ============================= */
 BitcoinExchange::BitcoinExchange(const BitcoinExchange & copy) :
 	_data(copy._data)
 {}
 
+/* ==================== copy assignment operator (=) ======================== */
 BitcoinExchange	&BitcoinExchange::operator=(const BitcoinExchange & othre)
 {
 	if (this != &othre) {
@@ -36,9 +39,11 @@ BitcoinExchange	&BitcoinExchange::operator=(const BitcoinExchange & othre)
 	return (*this);
 }
 
+/* ================================ destructor ============================== */
 BitcoinExchange::~BitcoinExchange(void)
 {}
 
+/* ============================ privat methods ============================== */
 void	BitcoinExchange::printfError(typeError error, const std::string data)
 {
 	std::string	msg;
