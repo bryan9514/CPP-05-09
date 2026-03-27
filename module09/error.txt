@@ -1,0 +1,3 @@
+	// (void)file;
+	// if (valorFloat > 1000)
+	// 	printfError(TOO_LARGE);

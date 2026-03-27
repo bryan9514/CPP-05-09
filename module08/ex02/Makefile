@@ -6,18 +6,18 @@
 #    By: brturcio <brturcio@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/22 10:37:06 by brturcio          #+#    #+#              #
-#    Updated: 2026/02/23 10:47:54 by brturcio         ###   ########.fr        #
+#    Updated: 2026/02/26 16:40:54 by brturcio         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		:= span
+NAME		:= mutantstack
 CC			:= c++
 CFLAGS		:= -Wall -Wextra -Werror -std=c++98
 
 DIR_SRCS	:= sources/
 DIR_OBJS	:= objs/
 
-SOURCES		:= main.cpp Span.cpp
+SOURCES		:= main.cpp
 OBJECTS		:= $(addprefix $(DIR_OBJS), $(SOURCES:.cpp=.o))
 
 INCLUDES	:= -Iincludes

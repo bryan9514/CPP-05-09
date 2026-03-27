@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brturcio <brturcio@student.42.fr>          +#+  +:+       +#+        */
+/*   By: brturcio <brturcio@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/18 11:26:26 by brturcio          #+#    #+#             */
-/*   Updated: 2026/03/25 16:57:17 by brturcio         ###   ########.fr       */
+/*   Updated: 2026/03/26 14:34:52 by brturcio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,7 +151,7 @@ bool	BitcoinExchange::isFloat(const std::string & data)
 	return (true);
 }
 
-void	BitcoinExchange::checkValor(const std::string & valor)
+void	BitcoinExchange::checkValor(const std::string & valor, typeFile file)
 {
 	float	valorFloat;
 
@@ -162,7 +162,7 @@ void	BitcoinExchange::checkValor(const std::string & valor)
 	valorFloat = atof(valor.c_str());
 	if (valorFloat < 0)
 		printfError(NOT_POSITIVE, valor);
-	if (valorFloat > 1000)
+	if (valorFloat > 1000 && file != DATACSV)
 		printfError(TOO_LARGE);
 }
 
@@ -189,7 +189,7 @@ void	BitcoinExchange::loadData(void)
 		try {
 			tokenCsvLine(line, date, valor);
 			checkDate(date);
-			checkValor(valor);
+			checkValor(valor, DATACSV);
 			loadFile(date, valor);
 		} catch (std::exception & e) {
 
@@ -211,7 +211,7 @@ void	BitcoinExchange::calculateOperation(const std::string & date, const std::st
 		--it;
 	}
 	result = value * it->second;
-	std::cout << INF << date << RST << " => " << INP << value << RST << " = " << SUC 
+	std::cout << INF << date << RST << " => " << INP << value << RST << " = " << SUC
 		<< result << RST << std::endl;
 }
 
@@ -233,7 +233,7 @@ void	BitcoinExchange::processInput(const std::string & nameFileTxt)
 		try {
 			tokenInputLine(line, date, valor);
 			checkDate(date);
-			checkValor(valor);
+			checkValor(valor, INPUT);
 			calculateOperation(date, valor);
 		} catch (std::exception & e) {
 			std::cout << ERR << e.what() << RST << std::endl;
@@ -241,5 +241,3 @@ void	BitcoinExchange::processInput(const std::string & nameFileTxt)
 		}
 	}
 }
-
-

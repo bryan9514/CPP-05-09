@@ -6,7 +6,7 @@
 /*   By: brturcio <brturcio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 10:47:12 by brturcio          #+#    #+#             */
-/*   Updated: 2026/02/24 13:22:53 by brturcio         ###   ########.fr       */
+/*   Updated: 2026/02/26 16:39:34 by brturcio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <list>
 
 template <typename T>
-void	printArray(T & tabl)
+void	printArray(const T & tabl)
 {
 	for (unsigned int i = 0; i < tabl.size(); i++) {
 		std::cout << tabl[i];
@@ -88,6 +88,19 @@ int	main(void)
 			std::cout << INF << sp.shortestSpan() << RST << std::endl;
 			std::cout << SUC << sp.longestSpan() << RST << std::endl;
 			printArray(sp.getVec());
+		} catch (std::exception & e) {
+			std::cout << ERR << e.what() << SUC << std::endl;
+		}
+	}
+	{
+		std::cout << RST << "\n============================ 10000 values ============================\n\n";		
+		try {
+			Span	sp = Span(10000);
+			
+			for (int i = 0; i < 10000; i++)
+				sp.addNumber(i);
+			std::cout << INF << sp.shortestSpan() << RST << std::endl;
+			std::cout << SUC << sp.longestSpan() << RST << std::endl;
 		} catch (std::exception & e) {
 			std::cout << ERR << e.what() << SUC << std::endl;
 		}

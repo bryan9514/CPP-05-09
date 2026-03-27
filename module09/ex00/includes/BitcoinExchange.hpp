@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brturcio <brturcio@student.42.fr>          +#+  +:+       +#+        */
+/*   By: brturcio <brturcio@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/18 10:23:57 by brturcio          #+#    #+#             */
-/*   Updated: 2026/03/21 21:35:56 by brturcio         ###   ########.fr       */
+/*   Updated: 2026/03/26 14:29:38 by brturcio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,12 @@ enum typeError
 	TOO_LARGE
 };
 
+enum typeFile
+{
+	DATACSV,
+	INPUT
+};
+
 class BitcoinExchange
 {
 private:
@@ -42,7 +48,7 @@ private:
 	bool	isInteger(const std::string & data);
 	void	checkDate(const std::string & date);
 	bool	isFloat(const std::string & data);
-	void	checkValor(const std::string & valor);
+	void	checkValor(const std::string & valor, typeFile file);
 	void	loadFile(const std::string & date, const std::string & valor);
 	void	calculateOperation(const std::string & date, const std::string & valor);
 
